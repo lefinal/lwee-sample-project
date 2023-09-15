@@ -1,0 +1,138 @@
+# Set the flow name according to the task it accomplishes.
+name: Weather Inspection
+description: Add your description here.
+in:
+  # Provide your flow inputs.
+  #
+  weatherData:
+    providedAs: file
+    filename: src/produkt_tu_stunde_19480101_20140901_05155.txt
+
+actions:
+  extractValues:
+    description: "Extracts temperature from input and outputs to stdin as 'RFC3339;temperature'
+    and to file as 'RFC3339;humidity'."
+    in:
+      weatherData:
+        source: flow.in.weatherData
+        provideAs: stdin
+    run:
+      type: proj-action
+      name: extract-values
+      config: default # Optional. Defaults to default.
+    out:
+      timeTemperaturePairs:
+        providedAs: stdout
+      timeHumidityPairs:
+        providedAs: container-workspace-file
+        filename: humidity.txt
+
+  overallMaxTemperature:
+    description: "Extracts the timestamp-value pair with max temperature."
+    in:
+      weatherData:
+        source: action.extractValues.out.timeTemperaturePairs
+        provideAs: stdin
+    run:
+      type: proj-action
+      name: max-value
+    out:
+      maxTemperature:
+        providedAs: container-workspace-file
+        filename: out.txt
+
+  maxTemperaturePerYear:
+    description: "Outputs max temperature per year in format 'year;temperature'."
+    in:
+      weatherData:
+        source: action.extractValues.out.timeTemperaturePairs
+        provideAs: stdin
+    run:
+      type: proj-action
+      name: max-per-year
+    out:
+      maxPerYear:
+        providedAs: container-workspace-file
+        filename: out.txt
+
+  overallMaxHumidity:
+    description: "Extracts the timestamp-value pair with max humidity."
+    in:
+      weatherData:
+        source: action.extractValues.out.timeHumidityPairs
+        provideAs: stdin
+    run:
+      type: proj-action
+      name: max-value
+    out:
+      maxHumidity:
+        providedAs: container-workspace-file
+        filename: out.txt
+
+  maxHumidityPerYear:
+    description: "Outputs max humidity per year in format 'year;humidity'."
+    in:
+      weatherData:
+        source: action.extractValues.out.timeHumidityPairs
+        provideAs: stdin
+    run:
+      type: proj-action
+      name: max-per-year
+    out:
+      maxPerYear:
+        providedAs: container-workspace-file
+        filename: out.txt
+
+  countTemperatureEntries:
+    in:
+      entries:
+        source: action.extractValues.out.timeTemperaturePairs
+        provideAs: stream
+        streamName: entries
+    run:
+      type: proj-action
+      name: count-entries
+    out:
+      entryCount:
+        providedAs: stream
+        streamName: entryCount
+
+  countHumidityEntries:
+    in:
+      entries:
+        source: action.extractValues.out.timeHumidityPairs
+        provideAs: stream
+        streamName: entries
+    run:
+      type: proj-action
+      name: count-entries
+    out:
+      entryCount:
+        providedAs: stream
+        streamName: entryCount
+
+out:
+  overallMaxTemperature:
+    source: action.overallMaxTemperature.out.maxTemperature
+    provideAs: file
+    filename: out/max-temperature.txt
+  maxTemperaturePerYear:
+    source: action.maxTemperaturePerYear.out.maxPerYear
+    provideAs: file
+    filename: out/max-temperature-per-year.txt
+  overallMaxHumidity:
+    source: action.overallMaxHumidity.out.maxHumidity
+    provideAs: file
+    filename: out/max-humidity.txt
+  maxHumidityPerYear:
+    source: action.maxHumidityPerYear.out.maxPerYear
+    provideAs: file
+    filename: out/max-humidity-per-year.txt
+  temperatureEntryCount:
+    source: action.countTemperatureEntries.out.entryCount
+    provideAs: file
+    filename: out/temperature-entry-count.txt
+  humidityEntryCount:
+    source: action.countHumidityEntries.out.entryCount
+    provideAs: file
+    filename: out/humidity-entry-count.txt
