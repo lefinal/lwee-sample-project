@@ -1,4 +1,4 @@
-module count-entries
+module my-new-action
 
 go 1.21.0
 

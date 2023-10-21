@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"context"
-	"fmt"
 	"github.com/lefinal/lwee/go-sdk/lweeclient"
 	"io"
 	"log"
@@ -13,16 +12,21 @@ import (
 
 func main() {
 	client := lweeclient.New(lweeclient.Options{})
+
+	// Request input streams. // TODO: Replace with your own implementation.
 	entriesInput, err := client.RequestInputStream("entries")
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Request output streams. // TODO: Replace with your own implementation.
 	entryCountOutput, err := client.ProvideOutputStream("entryCount")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer entryCountOutput.Close(nil)
 
+	// Process your data. // TODO: Replace with your own implementation.
 	client.Do(func(ctx context.Context) error {
 		// Read and count entries.
 		err = entriesInput.WaitForOpen(ctx)
@@ -38,7 +42,6 @@ func main() {
 		if err != nil {
 			return err
 		}
-		fmt.Println("got our entries. now we can output the result.")
 		// Write result.
 		err = entryCountOutput.Open()
 		if err != nil {
@@ -49,13 +52,12 @@ func main() {
 			return err
 		}
 		entryCountOutput.Close(nil)
-		fmt.Println("and we are done")
 		return nil
 	})
 
-	fmt.Println("serving")
+	// Serve the client and run registered functions until all inputs and outputs
+	// have been processed.
 	err = client.Serve()
-	fmt.Println("serving done")
 	if err != nil {
 		log.Fatal(err)
 	}

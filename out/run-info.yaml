@@ -1,0 +1,295 @@
+flowName: Weather Inspection
+start: 2023-10-16T02:27:56.471943423+02:00
+end: 2023-10-16T02:28:01.010958696+02:00
+took: 4.539015293s
+actions:
+    countHumidityEntries:
+        start: 2023-10-16T02:27:58.532038553+02:00
+        end: 2023-10-16T02:27:59.980452215+02:00
+        took: 1.448413672s
+        info: {}
+    countTemperatureEntries:
+        start: 2023-10-16T02:27:56.945613113+02:00
+        end: 2023-10-16T02:28:00.847294128+02:00
+        took: 3.901680985s
+        info: {}
+    extractValues:
+        start: 2023-10-16T02:27:56.47271169+02:00
+        end: 2023-10-16T02:28:00.484734921+02:00
+        took: 4.012023231s
+        info: {}
+    fileInfo:
+        start: 2023-10-16T02:27:58.206695702+02:00
+        end: 2023-10-16T02:27:58.208314517+02:00
+        took: 1.618815ms
+        info: {}
+    helloWorld:
+        start: 2023-10-16T02:27:56.472151712+02:00
+        end: 2023-10-16T02:27:57.305922706+02:00
+        took: 833.771004ms
+        info: {}
+    maxHumidityPerYear:
+        start: 2023-10-16T02:27:58.532253432+02:00
+        end: 2023-10-16T02:28:00.234945576+02:00
+        took: 1.702692154s
+        info: {}
+    maxTemperaturePerYear:
+        start: 2023-10-16T02:27:56.945619253+02:00
+        end: 2023-10-16T02:28:00.918300948+02:00
+        took: 3.972681725s
+        info: {}
+    overallMaxHumidity:
+        start: 2023-10-16T02:27:58.532316792+02:00
+        end: 2023-10-16T02:28:00.13751349+02:00
+        took: 1.605196698s
+        info: {}
+    overallMaxTemperature:
+        start: 2023-10-16T02:27:56.945826132+02:00
+        end: 2023-10-16T02:28:01.010880326+02:00
+        took: 4.065054124s
+        info: {}
+io:
+    totalWritten: 63.4MB
+    totalWrittenBytes: 63416541
+    writes:
+        action.countHumidityEntries.out.entryCount:
+            requesters:
+                - flow.out.<humidityEntryCount>
+            waitForOpenStart: 2023-10-16T02:27:56.472136722+02:00
+            waitForOpenEnd: 2023-10-16T02:27:59.671630446+02:00
+            waitForOpenTook: 3.199493714s
+            writeStart: 2023-10-16T02:27:59.671733335+02:00
+            writeEnd: 2023-10-16T02:27:59.672209644+02:00
+            writeTook: 476.289µs
+            written: 6B
+            writtenBytes: 6
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 19.81µs
+            maxWriteTime: 19.81µs
+            avgWriteTime: 19.809µs
+            totalWaitForNextP: 328.129µs
+            totalDistributeP: 530ns
+            totalWaitForWritesAfterDistribute: 21.52µs
+            writeTimes:
+                flow.out.<humidityEntryCount>: 19.81µs
+        action.countTemperatureEntries.out.entryCount:
+            requesters:
+                - flow.out.<temperatureEntryCount>
+            waitForOpenStart: 2023-10-16T02:27:56.472152742+02:00
+            waitForOpenEnd: 2023-10-16T02:28:00.484755051+02:00
+            waitForOpenTook: 4.012602309s
+            writeStart: 2023-10-16T02:28:00.484836481+02:00
+            writeEnd: 2023-10-16T02:28:00.487711423+02:00
+            writeTook: 2.874922ms
+            written: 6B
+            writtenBytes: 6
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 18.8µs
+            maxWriteTime: 18.8µs
+            avgWriteTime: 18.799µs
+            totalWaitForNextP: 2.811272ms
+            totalDistributeP: 470ns
+            totalWaitForWritesAfterDistribute: 21.52µs
+            writeTimes:
+                flow.out.<temperatureEntryCount>: 18.8µs
+        action.extractValues.out.timeHumidityPairs:
+            requesters:
+                - action.<maxHumidityPerYear>.in.<weatherData>
+                - action.<overallMaxHumidity>.in.<weatherData>
+                - action.<countHumidityEntries>.in.<entries>
+            waitForOpenStart: 2023-10-16T02:27:56.472156582+02:00
+            waitForOpenEnd: 2023-10-16T02:27:58.531869223+02:00
+            waitForOpenTook: 2.059712651s
+            writeStart: 2023-10-16T02:27:58.532043852+02:00
+            writeEnd: 2023-10-16T02:27:59.670937818+02:00
+            writeTook: 1.138893976s
+            written: 17.8MB
+            writtenBytes: 17801105
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 623.488425ms
+            maxWriteTime: 967.314483ms
+            avgWriteTime: 759.831062ms
+            totalWaitForNextP: 960.837µs
+            totalDistributeP: 1.390637ms
+            totalWaitForWritesAfterDistribute: 1.136224445s
+            writeTimes:
+                action.<countHumidityEntries>.in.<entries>: 688.690281ms
+                action.<maxHumidityPerYear>.in.<weatherData>: 967.314483ms
+                action.<overallMaxHumidity>.in.<weatherData>: 623.488425ms
+        action.extractValues.out.timeTemperaturePairs:
+            requesters:
+                - action.<maxTemperaturePerYear>.in.<weatherData>
+                - action.<overallMaxTemperature>.in.<weatherData>
+                - action.<countTemperatureEntries>.in.<entries>
+            waitForOpenStart: 2023-10-16T02:27:56.472068082+02:00
+            waitForOpenEnd: 2023-10-16T02:27:56.945456703+02:00
+            waitForOpenTook: 473.388601ms
+            writeStart: 2023-10-16T02:27:56.945600833+02:00
+            writeEnd: 2023-10-16T02:28:00.484247463+02:00
+            writeTook: 3.53864664s
+            written: 17.6MB
+            writtenBytes: 17563933
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 547.401433ms
+            maxWriteTime: 773.879091ms
+            avgWriteTime: 643.708122ms
+            totalWaitForNextP: 2.716972407s
+            totalDistributeP: 1.518527ms
+            totalWaitForWritesAfterDistribute: 819.547039ms
+            writeTimes:
+                action.<countTemperatureEntries>.in.<entries>: 609.843843ms
+                action.<maxTemperaturePerYear>.in.<weatherData>: 547.401433ms
+                action.<overallMaxTemperature>.in.<weatherData>: 773.879091ms
+        action.fileInfo.out.fileInfo:
+            requesters:
+                - flow.out.<fileInfo>
+            waitForOpenStart: 2023-10-16T02:27:56.472140742+02:00
+            waitForOpenEnd: 2023-10-16T02:27:58.20727403+02:00
+            waitForOpenTook: 1.735133298s
+            writeStart: 2023-10-16T02:27:58.20734304+02:00
+            writeEnd: 2023-10-16T02:27:58.208313717+02:00
+            writeTook: 970.677µs
+            written: 448B
+            writtenBytes: 448
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 22.09µs
+            maxWriteTime: 22.09µs
+            avgWriteTime: 22.089µs
+            totalWaitForNextP: 899.227µs
+            totalDistributeP: 800ns
+            totalWaitForWritesAfterDistribute: 24.93µs
+            writeTimes:
+                flow.out.<fileInfo>: 22.09µs
+        action.helloWorld.out.helloWorld:
+            requesters:
+                - flow.out.<helloWorld>
+            waitForOpenStart: 2023-10-16T02:27:56.472152782+02:00
+            waitForOpenEnd: 2023-10-16T02:27:57.301885507+02:00
+            waitForOpenTook: 829.732695ms
+            writeStart: 2023-10-16T02:27:57.301965897+02:00
+            writeEnd: 2023-10-16T02:27:57.302236476+02:00
+            writeTook: 270.579µs
+            written: 807B
+            writtenBytes: 807
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 8.32µs
+            maxWriteTime: 8.32µs
+            avgWriteTime: 8.319µs
+            totalWaitForNextP: 227.649µs
+            totalDistributeP: 440ns
+            totalWaitForWritesAfterDistribute: 10.93µs
+            writeTimes:
+                flow.out.<helloWorld>: 8.32µs
+        action.maxHumidityPerYear.out.maxPerYear:
+            requesters:
+                - flow.out.<maxHumidityPerYear>
+            waitForOpenStart: 2023-10-16T02:27:56.472142512+02:00
+            waitForOpenEnd: 2023-10-16T02:28:00.228980962+02:00
+            waitForOpenTook: 3.75683845s
+            writeStart: 2023-10-16T02:28:00.229142382+02:00
+            writeEnd: 2023-10-16T02:28:00.229287132+02:00
+            writeTook: 144.75µs
+            written: 1.1KB
+            writtenBytes: 1055
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 5.27µs
+            maxWriteTime: 5.27µs
+            avgWriteTime: 5.269µs
+            totalWaitForNextP: 83.89µs
+            totalDistributeP: 370ns
+            totalWaitForWritesAfterDistribute: 7.85µs
+            writeTimes:
+                flow.out.<maxHumidityPerYear>: 5.27µs
+        action.maxTemperaturePerYear.out.maxPerYear:
+            requesters:
+                - flow.out.<maxTemperaturePerYear>
+            waitForOpenStart: 2023-10-16T02:27:56.472101912+02:00
+            waitForOpenEnd: 2023-10-16T02:28:00.913373642+02:00
+            waitForOpenTook: 4.44127198s
+            writeStart: 2023-10-16T02:28:00.913496951+02:00
+            writeEnd: 2023-10-16T02:28:00.913632491+02:00
+            writeTook: 135.54µs
+            written: 1.0KB
+            writtenBytes: 1005
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 17.19µs
+            maxWriteTime: 17.19µs
+            avgWriteTime: 17.189µs
+            totalWaitForNextP: 44.84µs
+            totalDistributeP: 750ns
+            totalWaitForWritesAfterDistribute: 21.24µs
+            writeTimes:
+                flow.out.<maxTemperaturePerYear>: 17.19µs
+        action.overallMaxHumidity.out.maxHumidity:
+            requesters:
+                - flow.out.<overallMaxHumidity>
+            waitForOpenStart: 2023-10-16T02:27:56.472101222+02:00
+            waitForOpenEnd: 2023-10-16T02:28:00.130354991+02:00
+            waitForOpenTook: 3.658253749s
+            writeStart: 2023-10-16T02:28:00.130442871+02:00
+            writeEnd: 2023-10-16T02:28:00.130552091+02:00
+            writeTook: 109.21µs
+            written: 31B
+            writtenBytes: 31
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 16.71µs
+            maxWriteTime: 16.71µs
+            avgWriteTime: 16.709µs
+            totalWaitForNextP: 59.11µs
+            totalDistributeP: 660ns
+            totalWaitForWritesAfterDistribute: 18.4µs
+            writeTimes:
+                flow.out.<overallMaxHumidity>: 16.71µs
+        action.overallMaxTemperature.out.maxTemperature:
+            requesters:
+                - flow.out.<overallMaxTemperature>
+            waitForOpenStart: 2023-10-16T02:27:56.472123502+02:00
+            waitForOpenEnd: 2023-10-16T02:28:01.005603661+02:00
+            waitForOpenTook: 4.533480159s
+            writeStart: 2023-10-16T02:28:01.005710551+02:00
+            writeEnd: 2023-10-16T02:28:01.005858061+02:00
+            writeTook: 147.51µs
+            written: 30B
+            writtenBytes: 30
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 19.14µs
+            maxWriteTime: 19.14µs
+            avgWriteTime: 19.139µs
+            totalWaitForNextP: 67.37µs
+            totalDistributeP: 760ns
+            totalWaitForWritesAfterDistribute: 22.71µs
+            writeTimes:
+                flow.out.<overallMaxTemperature>: 19.14µs
+        flow.in.weatherData:
+            requesters:
+                - action.<extractValues>.in.<weatherData>
+                - action.<fileInfo>.in.<entries>
+            waitForOpenStart: 2023-10-16T02:27:56.472125252+02:00
+            waitForOpenEnd: 2023-10-16T02:27:56.472220442+02:00
+            waitForOpenTook: 95.19µs
+            writeStart: 2023-10-16T02:27:56.472624651+02:00
+            writeEnd: 2023-10-16T02:27:58.206416682+02:00
+            writeTook: 1.733792051s
+            written: 28.0MB
+            writtenBytes: 28048115
+            copyBufferSize: 32.8KB
+            copyBufferSizeBytes: 32768
+            minWriteTime: 26.935707ms
+            maxWriteTime: 1.70670688s
+            avgWriteTime: 866.821293ms
+            totalWaitForNextP: 762.239µs
+            totalDistributeP: 950.407µs
+            totalWaitForWritesAfterDistribute: 1.731642798s
+            writeTimes:
+                action.<extractValues>.in.<weatherData>: 1.70670688s
+                action.<fileInfo>.in.<entries>: 26.935707ms

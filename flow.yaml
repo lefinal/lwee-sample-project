@@ -9,6 +9,30 @@ in:
     filename: src/produkt_tu_stunde_19480101_20140901_05155.txt
 
 actions:
+  helloWorld:
+    description: "This runs the default hello-world image from Docker for testing purposes."
+    run:
+      type: image
+      image: "hello-world:latest"
+    out:
+      helloWorld:
+        providedAs: stdout
+
+  fileInfo:
+    in:
+      entries:
+        source: flow.in.weatherData
+        provideAs: workspace-file
+        filename: "weather-data.txt"
+    run:
+      type: command
+      command:
+        - "stat"
+        - "{{ .Action.Extras.WorkspaceDir }}/{{ .Flow.Raw.actions.fileInfo.in.entries.filename }}"
+    out:
+      fileInfo:
+        providedAs: stdout
+
   extractValues:
     description: "Extracts temperature from input and outputs to stdin as 'RFC3339;temperature'
     and to file as 'RFC3339;humidity'."
@@ -24,7 +48,7 @@ actions:
       timeTemperaturePairs:
         providedAs: stdout
       timeHumidityPairs:
-        providedAs: container-workspace-file
+        providedAs: workspace-file
         filename: humidity.txt
 
   overallMaxTemperature:
@@ -38,7 +62,7 @@ actions:
       name: max-value
     out:
       maxTemperature:
-        providedAs: container-workspace-file
+        providedAs: workspace-file
         filename: out.txt
 
   maxTemperaturePerYear:
@@ -52,7 +76,7 @@ actions:
       name: max-per-year
     out:
       maxPerYear:
-        providedAs: container-workspace-file
+        providedAs: workspace-file
         filename: out.txt
 
   overallMaxHumidity:
@@ -66,7 +90,7 @@ actions:
       name: max-value
     out:
       maxHumidity:
-        providedAs: container-workspace-file
+        providedAs: workspace-file
         filename: out.txt
 
   maxHumidityPerYear:
@@ -80,7 +104,7 @@ actions:
       name: max-per-year
     out:
       maxPerYear:
-        providedAs: container-workspace-file
+        providedAs: workspace-file
         filename: out.txt
 
   countTemperatureEntries:
@@ -112,6 +136,14 @@ actions:
         streamName: entryCount
 
 out:
+  helloWorld:
+    source: action.helloWorld.out.helloWorld
+    provideAs: file
+    filename: out/hello-world.txt
+  fileInfo:
+    source: action.fileInfo.out.fileInfo
+    provideAs: file
+    filename: out/file-info.txt
   overallMaxTemperature:
     source: action.overallMaxTemperature.out.maxTemperature
     provideAs: file

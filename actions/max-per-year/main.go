@@ -28,6 +28,12 @@ func main() {
 	var currentYear int
 	var currentMax float64
 	value := -math.MaxFloat64
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("panic while handling scanner line", scanner.Text())
+			panic(r)
+		}
+	}()
 	for scanner.Scan() {
 		if strings.Count(scanner.Text(), ";") > 2 {
 			log.Fatalf("that's not right: %s", scanner.Text())

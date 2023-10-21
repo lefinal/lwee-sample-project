@@ -1,0 +1,8 @@
+  File: /tmp/lwee/2023-10-16_02-27-55_125094/fileInfo/workspace/weather-data.txt
+  Size: 28048115  	Blocks: 54784      IO Block: 4096   regular file
+Device: 10301h/66305d	Inode: 11274946    Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/   lenfi)   Gid: ( 1000/   lenfi)
+Access: 2023-10-16 02:27:56.469265919 +0200
+Modify: 2023-10-16 02:27:58.201261367 +0200
+Change: 2023-10-16 02:27:58.201261367 +0200
+ Birth: 2023-10-16 02:27:56.469265919 +0200

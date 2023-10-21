@@ -24,7 +24,11 @@ func main() {
 		log.Fatal(err)
 	}
 	defer func() { _ = humidityFile.Close() }()
-	extractAndPrint(os.Stdin, os.Stdout, humidityFile)
+	bufferedStdout := bufio.NewWriterSize(os.Stdout, 1024*1024)
+	bufferedHumidityFile := bufio.NewWriterSize(humidityFile, 1024*1024)
+	extractAndPrint(os.Stdin, bufferedStdout, bufferedHumidityFile)
+	_ = bufferedStdout.Flush()
+	_ = bufferedHumidityFile.Flush()
 }
 
 func extractAndPrint(r io.Reader, temperatureWriter io.Writer, humidityWriter io.Writer) {
